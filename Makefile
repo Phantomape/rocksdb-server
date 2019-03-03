@@ -23,14 +23,12 @@ uninstall:
 	rm -f /usr/local/bin/rocksdb-server
 
 # libuv
-libuv: src/libuv-1.10.1/build/lib/libuv.a
-src/libuv-1.10.1/build/lib/libuv.a:
-	cd src && tar xf libuv-1.10.1.tar.gz
-	cd src/libuv-1.10.1 && sh autogen.sh
-	mkdir -p src/libuv-1.10.1/build
-	cd src/libuv-1.10.1/build && ../configure --prefix=$$(pwd)
-	make -C src/libuv-1.10.1/build install
-
+libuv: third_party/libuv/build/lib/libuv.a
+third_party/libuv/build/lib/libuv.a:
+	cd third_party/libuv && sh autogen.sh
+	mkdir -p third_party/libuv/build
+	cd third_party/libuv/build && ../configure --prefix=$$(pwd)
+	make -C third_party/libuv/build install
 
 # rocksdb
 rocksdb: src/rocksdb-4.13 \
