@@ -3,20 +3,20 @@ all: rocksdb libuv
 		-DROCKSDB_VERSION="\"4.13"\" \
 		-DSERVER_VERSION="\"0.1.0"\" \
 		-DLIBUV_VERSION="\"1.10.1"\" \
-		-Isrc/rocksdb-4.13/include/ \
-		-Isrc/libuv-1.10.1/build/include/ \
+		-Ithird_party/rocksdb/include/ \
+		-Ithird_party/libuv/build/include/ \
 		-pthread \
 		-o rocksdb-server \
 		src/server.cc src/client.cc src/exec.cc src/match.cc src/util.cc \
-		src/rocksdb-4.13/librocksdb.a \
-		src/rocksdb-4.13/libbz2.a \
-		src/rocksdb-4.13/libz.a \
-		src/rocksdb-4.13/libsnappy.a \
-		src/libuv-1.10.1/build/lib/libuv.a
+		third_party/rocksdb/librocksdb.a \
+		third_partysrc/rocksdb/libbz2.a \
+		third_party/rocksdb/libz.a \
+		third_party/rocksdb/libsnappy.a \
+		third_party/libuv/build/lib/libuv.a
 clean:
 	rm -f rocksdb-server
-	rm -rf src/libuv-1.10.1/
-	rm -rf src/rocksdb-4.13/
+	rm -rf third_party/libuv/
+	rm -rf third_party/rocksdb/
 install: all
 	cp rocksdb-server /usr/local/bin
 uninstall: 
@@ -31,19 +31,16 @@ third_party/libuv/build/lib/libuv.a:
 	make -C third_party/libuv/build install
 
 # rocksdb
-rocksdb: src/rocksdb-4.13 \
-	src/rocksdb-4.13/librocksdb.a \
-	src/rocksdb-4.13/libz.a \
-	src/rocksdb-4.13/libbz2.a \
-	src/rocksdb-4.13/libsnappy.a
-src/rocksdb-4.13:
-	cd src && tar xf rocksdb-4.13.tar.gz
-src/rocksdb-4.13/librocksdb.a:
-	DEBUG_LEVEL=0 make -C src/rocksdb-4.13 static_lib
-src/rocksdb-4.13/libz.a:
-	DEBUG_LEVEL=0 make -C src/rocksdb-4.13 libz.a
-src/rocksdb-4.13/libbz2.a:
-	DEBUG_LEVEL=0 make -C src/rocksdb-4.13 libbz2.a
-src/rocksdb-4.13/libsnappy.a:
-	DEBUG_LEVEL=0 make -C src/rocksdb-4.13 libsnappy.a
+rocksdb: third_party/rocksdb/librocksdb.a \
+	third_party/rocksdb/libz.a \
+	third_party/rocksdb/libbz2.a \
+	third_party/rocksdb/libsnappy.a
+third_party/rocksdb/librocksdb.a:
+	DEBUG_LEVEL=0 make -C third_party/rocksdb static_lib
+third_party/rocksdb/libz.a:
+	DEBUG_LEVEL=0 make -C third_party/rocksdb libz.a
+third_party/rocksdb/libbz2.a:
+	DEBUG_LEVEL=0 make -C third_party/rocksdb libbz2.a
+third_party/rocksdb/libsnappy.a:
+	DEBUG_LEVEL=0 make -C third_party/rocksdb libsnappy.a
 
