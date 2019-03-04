@@ -5,7 +5,9 @@
 My company uses RocksDB to persist data. Unfortunately, we don't have any handy tool to query or visualize the database. All we have is a flaky C++ script that does not work at all, the code of which is so poorly written that I don't want to get down to the bottom of why it doesn't work. I want a handy tool like redis client to access the database(mostly because I'm quite familiar with redis).
 
 ## Engineering Roadmap
-* Replace rocksdb with git submodule
+* Replace rocksdb with git submodule(Done)
+* Replace libuv with git submodule(Done)
+* Switch to CMake + Ninja
 * Use clang-tidy: https://segmentfault.com/a/1190000007610205, https://clang.llvm.org/docs/JSONCompilationDatabase.html
 * Support thrift deserialization
 * Support more redis commands
