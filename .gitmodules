@@ -1,9 +1,9 @@
 [submodule "third_party/libuv"]
 	path = third_party/libuv
-	url = https://github.com/libuv/libuv.git
+	url = ../../libuv/libuv.git
 [submodule "third_party/rocksdb"]
 	path = third_party/rocksdb
-	url = https://github.com/facebook/rocksdb.git
+	url = ../../facebook/rocksdb.git
 [submodule "third_party/googletest"]
 	path = third_party/googletest
 	url = ../../google/googletest.git
