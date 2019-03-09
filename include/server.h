@@ -1,14 +1,14 @@
 #ifndef SERVER_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <err.h>
-#include <uv.h>
 #include <rocksdb/db.h>
 #include <rocksdb/options.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <uv.h>
 
-extern rocksdb::DB* db;
+extern rocksdb::DB *db;
 extern bool nosync;
 extern int nprocs;
 extern uv_loop_t *loop;
@@ -18,37 +18,37 @@ extern const char *ERR_QUIT;
 
 void log(char c, const char *format, ...);
 
-int stringmatchlen(const char *pattern, int patternLen,
-        const char *string, int stringLen, int nocase);
-int pattern_limits(const char *pattern, int patternLen, 
-		char **start, int *startLen, char **end, int *endLen);
+int stringmatchlen(const char *pattern, int patternLen, const char *string, int stringLen,
+                   int nocase);
+int pattern_limits(const char *pattern, int patternLen, char **start, int *startLen, char **end,
+                   int *endLen);
 void flushdb();
 int remove_directory(const char *path, int remove_parent);
 
 // atoul returns a positive integer. invalid or negative integers return -1.
-int atop(const char* str, int len);
+int atop(const char *str, int len);
 
 typedef const char *error;
 
 typedef struct client_t {
-	uv_tcp_t tcp;	// should always be the first element.
-	uv_write_t req;
-	uv_work_t worker;
-	uv_stream_t *server;
-	int must_close;
-	char *buf;
-	int buf_cap;
-	int buf_len;
-	int buf_idx;
-	const char **args;
-	int args_cap;
-	int args_len;
-	int *args_size;
-	char *tmp_err;
-	char *output;
-	int output_len;
-	int output_cap;
-	int output_offset;
+    uv_tcp_t tcp; // should always be the first element.
+    uv_write_t req;
+    uv_work_t worker;
+    uv_stream_t *server;
+    int must_close;
+    char *buf;
+    int buf_cap;
+    int buf_len;
+    int buf_idx;
+    const char **args;
+    int args_cap;
+    int args_len;
+    int *args_size;
+    char *tmp_err;
+    char *output;
+    int output_len;
+    int output_cap;
+    int output_offset;
 } client;
 
 client *client_new();
@@ -70,6 +70,5 @@ error client_err_unknown_command(client *c, const char *name, int count);
 bool client_exec_commands(client *c);
 
 error exec_command(client *c);
-
 
 #endif // SERVER_H

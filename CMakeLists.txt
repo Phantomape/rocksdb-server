@@ -51,4 +51,7 @@ endif()
 
 add_subdirectory(src)
 
+add_subdirectory(third_party/libuv)
+add_subdirectory(third_party/rocksdb)
+
 # target_link_libraries(rocksdb-server ?)
