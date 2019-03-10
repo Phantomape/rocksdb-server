@@ -20,5 +20,4 @@ target_include_directories(rocksdb-server PRIVATE ../third_party/rocksdb/include
 
 add_definitions(-DROCKSDB_VERSION=\"5.8\" -DLIBUV_VERSION=\"1.26.0\" -DSERVER_VERSION=\"1.0.0\")
 
-# target_link_directories(rocksdb-server PRIVATE ../third_party/libuv) target_link_libraries
-# (rocksdb-server PRIVATE libuv)
+target_link_libraries(rocksdb-server uv rocksdb)
