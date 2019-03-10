@@ -22,6 +22,6 @@ build_ninja() {
     ninja
 }
 
-build_default
+build_ninja
 
 exit 0
