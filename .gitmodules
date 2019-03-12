@@ -10,3 +10,6 @@
 [submodule "third_party/thrift"]
 	path = third_party/thrift
 	url = ../../apache/thrift.git
+[submodule "third_party/librdkafka"]
+	path = third_party/librdkafka
+	url = ../../edenhill/librdkafka.git
