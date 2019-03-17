@@ -34,7 +34,7 @@ if(CMAKE_VERSION VERSION_GREATER 3.4)
     option(CLANG_TIDY_FIX "Perform fixes for Clang-Tidy" OFF)
     find_program(CLANG_TIDY_EXE NAMES "clang-tidy" DOC "Path to clang-tidy executable")
 
-    # The following lines would product too much noise about stdarg.h not found
+    # The following lines would produce too much noise
     if(CLANG_TIDY_EXE)
         if(CLANG_TIDY_FIX)
             set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}" "-fix")
