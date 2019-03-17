@@ -9,7 +9,7 @@ build_default() {
     cd "$PROJECT_DIR"
     mkdir -p ./build/default
     cd "$PROJECT_DIR/build/default"
-    cmake ../..
+    cmake ../.. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
     make
 }
 
@@ -18,7 +18,7 @@ build_ninja() {
     cd "$PROJECT_DIR"
     mkdir -p ./build/ninja
     cd "$PROJECT_DIR/build/ninja"
-    cmake -GNinja ../..
+    cmake -GNinja ../.. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
     ninja
 }
 
